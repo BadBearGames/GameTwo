@@ -30,7 +30,6 @@ public class Player : MonoBehaviour
 	/// </summary>
 	public void Land()
 	{
-		body.useGravity = true;
 		InputManager.Instance.CanJump = true;
 	}
 
@@ -41,7 +40,6 @@ public class Player : MonoBehaviour
 	/// <param name="force">Force.</param>
 	public void Jump(Vector3 direction, float force)
 	{
-		body.useGravity = true;
 		body.AddForce(direction * force);
 	}
 }

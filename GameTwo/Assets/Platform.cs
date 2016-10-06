@@ -19,7 +19,7 @@ public class Platform : MonoBehaviour
 
 	void OnCollisionEnter(Collision col)
 	{
-		if (col.gameObject.GetComponent<Player>() != null)// && col.gameObject.GetComponent<Player>().Body.velocity.y > 0f)
+		if (col.gameObject.GetComponent<Player>() != null)
 		{
 			//Player landed so call the landing
 			GameManager.Instance.LandedOnNewPlatform(this);

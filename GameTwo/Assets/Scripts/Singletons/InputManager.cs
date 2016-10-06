@@ -68,17 +68,11 @@ public class InputManager : Singleton<InputManager>
 
 			//Set the jump direction
 			Vector3 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
-
-			Debug.Log("Mouse position: " + touchPosition);
-			Debug.DrawLine(GameManager.Instance.player.Position, touchPosition);
-
 			jumpDirection = Vector3.Normalize(touchPosition - GameManager.Instance.player.Position);
-			//Debug.DrawRay(GameManager.Instance.player.Position, jumpDirection * 50f);
 		}
 		else if (Input.GetMouseButtonUp(0))
 		{
 			//Jump sucker you got nothing on me
-			Debug.Log("Jump direction: " + jumpDirection);
 			GameManager.Instance.player.Jump(jumpDirection, jumpCharge);
 			canJump = false;
 		}
