@@ -27,6 +27,12 @@ public class GameManager : Singleton<GameManager>
 
 	void Awake()
 	{
+		
+	}
+
+	public void StartGame()
+	{
+		MenuManager.Instance.GoToScreen("GameScreen");
 		StartRound();
 	}
 
