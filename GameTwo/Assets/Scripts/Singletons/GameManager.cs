@@ -30,15 +30,6 @@ public class GameManager : Singleton<GameManager>
 		StartRound();
 	}
 
-	void FixedUpdate()
-	{
-		if (currentPlatform != null)
-		{
-			float rate = 0.995f;
-			currentPlatform.transform.localScale = new Vector3(currentPlatform.transform.localScale.x * rate, currentPlatform.transform.localScale.y, currentPlatform.transform.localScale.z * rate);
-		}
-	}
-
 	/// <summary>
 	/// Will be called in other places later on
 	/// </summary>
