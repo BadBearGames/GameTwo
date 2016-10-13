@@ -42,4 +42,19 @@ public class Player : MonoBehaviour
 	{
 		body.AddForce(direction * force);
 	}
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "Lava") {
+            transform.position = new Vector3(-75, -.45f, -73);
+            
+        }
+
+      
+    }
+ 
+ //player respawn
+ 
+ 
 }
+
