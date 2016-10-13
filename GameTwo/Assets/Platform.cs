@@ -29,7 +29,8 @@ public class Platform : MonoBehaviour
             {
                 //its not- allow to shrink
                 hasLandedOn = true;
-            }
+                
+           }
             	
 		}
 	}

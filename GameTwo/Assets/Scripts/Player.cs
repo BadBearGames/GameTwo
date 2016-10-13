@@ -46,11 +46,15 @@ public class Player : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Lava") {
-            transform.position = new Vector3(-75, -.45f, -73);
-            
-        }
+           // Destroy(gameObject);
+           // Destroy(collision.gameObject);
 
-      
+            //yield return new WaitForSeconds(2);
+
+           // Instantiate(Resources.Load("Player"));
+            transform.position = new Vector3(20, -.4f, .5f);
+            //Application.LoadLevel("Main");
+        }
     }
  
  //player respawn
