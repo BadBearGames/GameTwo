@@ -56,6 +56,7 @@ public class InputManager : Singleton<InputManager>
 	{
 		if (ChargeInputDown)
 		{
+            
 			if (jumpCharge < jumpChargeMax)
 			{
 				//Later this should be changed to a curve

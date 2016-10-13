@@ -21,7 +21,7 @@ public class ColorSwitcher : MonoBehaviour {
             transform.GetComponent<Renderer>().material.color = Color.yellow;
             if (Time.time > currentDelay)
             {
-                transform.GetComponent<Renderer>().material.color = new Color(128, 0, 0); 
+                transform.GetComponent<Renderer>().material.color = new Color(0, 0, 255); 
                 colourChangeCollision = false;
             }
         }
