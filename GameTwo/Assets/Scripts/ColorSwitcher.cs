@@ -10,10 +10,10 @@ public class ColorSwitcher : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("Contact was made!");
         colourChangeCollision = true;
         currentDelay = Time.time + colourChangeDelay;
     }
+
     void checkColourChange()
     {
         if (colourChangeCollision && gameObject.name != "Player")
@@ -21,7 +21,7 @@ public class ColorSwitcher : MonoBehaviour {
             transform.GetComponent<Renderer>().material.color = Color.yellow;
             if (Time.time > currentDelay)
             {
-                transform.GetComponent<Renderer>().material.color = new Color(0, 0, 255); 
+                transform.GetComponent<Renderer>().material.color = new Color(0, 0, 0); 
                 colourChangeCollision = false;
             }
         }
