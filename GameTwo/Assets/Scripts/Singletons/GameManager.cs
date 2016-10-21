@@ -27,7 +27,6 @@ public class GameManager : Singleton<GameManager>
 
 	void Awake()
 	{
-		
 	}
 
 	public void StartGame()
@@ -41,7 +40,11 @@ public class GameManager : Singleton<GameManager>
 	/// </summary>
 	public void StartRound()
 	{
+        //set score to zero
 		score = 0;
+
+        //set player to not be dead
+        player.IsDead = false;
 	}
 
 	/// <summary>
@@ -57,4 +60,10 @@ public class GameManager : Singleton<GameManager>
 		player.Land();
 		InputManager.Instance.ResetJump();
 	}
+
+    void Update()
+    {
+        //check if player is dead and start new round if so
+        if (player.IsDead) { StartRound(); }
+    }
 }

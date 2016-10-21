@@ -10,9 +10,18 @@ public class Player : MonoBehaviour
 	#region Fields
 	//Physics
 	private Rigidbody body;
+    private bool isDead;
+
 	#endregion
 
 	#region Properties
+    public bool IsDead
+    {
+        get { return isDead; }
+
+        set { isDead = value; }
+    }
+
 	public Vector3 Position { get { return transform.position; } }
 
 	//Physics
@@ -45,15 +54,13 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Lava") {
-           // Destroy(gameObject);
-           // Destroy(collision.gameObject);
-
-            //yield return new WaitForSeconds(2);
-
-           // Instantiate(Resources.Load("Player"));
+        if (collision.gameObject.name == "Lava")
+        {
+            //move player
             transform.position = new Vector3(20, -.4f, .5f);
-            //Application.LoadLevel("Main");
+
+            //set death bool
+            isDead = true;
         }
     }
  
