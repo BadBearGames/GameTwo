@@ -53,7 +53,6 @@ public class Platform : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(orginal);
         //check if its been landed on
         float rate = 0.995f; //rate of resizing
         if (hasLandedOn)
