@@ -13,19 +13,22 @@ public class Coin : MonoBehaviour
     #endregion
 
     // Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        transform.Rotate(25 * Time.deltaTime, 5 * Time.deltaTime, 50 * Time.deltaTime);
-	}
+    void Start()
+    {
 
-    void OnTriggerEnter(Collider other){
-        isCollected=true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        transform.Rotate(25 * Time.deltaTime, 5 * Time.deltaTime, 50 * Time.deltaTime);
+    }
+
+
+    void OnTriggerEnter(Collider other)
+    {
+        isCollected = true;
         GameManager.Instance.CollectedCoin(this);
         Destroy(this.gameObject);
-
     }
 }
