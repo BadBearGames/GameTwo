@@ -7,6 +7,7 @@ public class Platform : MonoBehaviour
 	private bool hasLandedOn;
 	public bool isStartingPlatform;
     private Vector3 orginal;
+    private float height = 100;
 	#endregion
 
 	#region Properties
@@ -54,11 +55,17 @@ public class Platform : MonoBehaviour
     void FixedUpdate()
     {
         //check if its been landed on
-        float rate = 0.995f; //rate of resizing
+        float rate = 0.2f; //rate of resizing
+        float color = 2.5f;
+        this.transform.GetComponent<Renderer>().material.color = new Color( 255-(color * height),0, 0);
         if (hasLandedOn)
         {
             //shrink platform
-            transform.localScale = new Vector3(transform.localScale.x * rate, transform.localScale.y, transform.localScale.z * rate);
+            //transform.localScale = new Vector3(transform.localScale.x * rate, transform.localScale.y, transform.localScale.z * rate);
+            height -= rate;
+            //print(height);
+            print(255 - color * height);
+
         }
         else 
         {
@@ -68,6 +75,10 @@ public class Platform : MonoBehaviour
                 //grow
                 transform.localScale = new Vector3(transform.localScale.x / rate, transform.localScale.y, transform.localScale.z / rate);
             }
+        }
+        if (height <= 0)
+        {
+            //disable collider to let player fall through
         }
     }
 }
