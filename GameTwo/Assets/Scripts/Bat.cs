@@ -12,12 +12,13 @@ public class Bat : MonoBehaviour {
 	
 	// Update is called once per frame
     void Update(){
-        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        //float rangeX = this.transform.position.x+range;
+        this.transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        if (transform.position.x >= range || transform.position.x <= -range || transform.position.y >= range || transform.position.y <= -range || transform.position.z >= range || transform.position.z <= -range)
+        if (this.transform.position.x >= this.transform.position.x + range || this.transform.position.x <= this.transform.position.x - range || this.transform.position.y >= this.transform.position.y + range || this.transform.position.y <= this.transform.position.y - range || this.transform.position.z >= this.transform.position.z + range || this.transform.position.z <= this.transform.position.z - range)
         {
             speed = -speed;
-            transform.Translate(Vector2.right * speed * Time.deltaTime);
+            this.transform.Translate(Vector2.right * speed * Time.deltaTime);
 
         }
     }

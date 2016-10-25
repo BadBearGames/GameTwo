@@ -61,6 +61,12 @@ public class GameManager : Singleton<GameManager>
 		InputManager.Instance.ResetJump();
 	}
 
+    public void CollectedCoin(Coin coin){
+        if (coin.IsCollected)
+        {
+            score += 10;
+        }
+    }
     void Update()
     {
         //check if player is dead and start new round if so
