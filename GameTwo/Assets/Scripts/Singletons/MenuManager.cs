@@ -16,6 +16,7 @@ public class MenuManager : Singleton<MenuManager>
 
 	#region Properties
 	public Dictionary<string, GameObject> Screens { get { return screens; } }
+	public string CurrentScreen { get { return screenStack.Peek(); } }
 	#endregion
 
 	protected MenuManager(){}

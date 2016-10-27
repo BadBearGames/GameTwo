@@ -16,6 +16,10 @@ public class GameManager : Singleton<GameManager>
 
 	//Objective
 	public int score;
+
+	//Spawn Timer
+	private float spawnTimer = 1f; // in seconds
+	private bool spawn = false;
 	#endregion
 
 	#region Properties
@@ -32,7 +36,7 @@ public class GameManager : Singleton<GameManager>
 	public void StartGame()
 	{
 		MenuManager.Instance.GoToScreen("GameScreen");
-		StartRound();
+		spawn = true;
 	}
 
 	/// <summary>
@@ -45,6 +49,8 @@ public class GameManager : Singleton<GameManager>
 
         //set player to not be dead
         player.IsDead = false;
+
+		InputManager.Instance.ResetJump();
 	}
 
 	/// <summary>
@@ -52,24 +58,44 @@ public class GameManager : Singleton<GameManager>
 	/// </summary>
 	public void LandedOnNewPlatform(Platform platform)
 	{
-		if (!platform.HasLandedOn)
+		if (!platform.HasLandedOn && MenuManager.Instance.CurrentScreen == "GameScreen")
 		{
+			SoundManager.Instance.PlaySfx("point");
 			currentPlatform = platform;
 			score++;
 		}
 		player.Land();
-		InputManager.Instance.ResetJump();
+		if (MenuManager.Instance.CurrentScreen == "GameScreen")
+		{
+			InputManager.Instance.ResetJump();
+		}
 	}
 
-    public void CollectedCoin(Coin coin){
+	//comments need to happen guys
+    public void CollectedCoin(Coin coin)
+	{
         if (coin.IsCollected)
         {
+			SoundManager.Instance.PlaySfx("coin");
             score += 10;
         }
     }
+
     void Update()
     {
         //check if player is dead and start new round if so
         if (player.IsDead) { StartRound(); }
+
+		if (spawn && spawnTimer > 0f)
+		{
+			spawnTimer -= Time.deltaTime;
+
+			if (spawnTimer <= 0f)
+			{
+				spawnTimer = 0f;
+				spawn = false;
+				StartRound();
+			}
+		}
     }
 }

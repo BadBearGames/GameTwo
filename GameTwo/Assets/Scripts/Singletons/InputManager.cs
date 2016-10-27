@@ -74,7 +74,10 @@ public class InputManager : Singleton<InputManager>
 		else if (Input.GetMouseButtonUp(0))
 		{
 			//Jump sucker you got nothing on me
-			GameManager.Instance.player.Jump(jumpDirection, jumpCharge);
+			if (MenuManager.Instance.CurrentScreen == "GameScreen")
+			{
+				GameManager.Instance.player.Jump(jumpDirection, jumpCharge);
+			}
 			canJump = false;
 		}
 	}

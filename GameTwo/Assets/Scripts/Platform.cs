@@ -17,7 +17,7 @@ public class Platform : MonoBehaviour
 	void Awake()
 	{
         //cant be on it from the begining
-		hasLandedOn = false;
+		hasLandedOn = isStartingPlatform;
 
         // save orginal size
         orginal = transform.localScale;
@@ -25,7 +25,7 @@ public class Platform : MonoBehaviour
 
 	void OnCollisionEnter(Collision col)
 	{
-		if (col.gameObject.GetComponent<Player>() != null)
+		if (col.gameObject.GetComponent<Player>() != null && MenuManager.Instance.CurrentScreen == "GameScreen")
 		{
 			//Player landed so call the landing
 			GameManager.Instance.LandedOnNewPlatform(this);
@@ -63,8 +63,6 @@ public class Platform : MonoBehaviour
             //shrink platform
             //transform.localScale = new Vector3(transform.localScale.x * rate, transform.localScale.y, transform.localScale.z * rate);
             height -= rate;
-            print("height: "+height);
-            print("color: "+color);
             //print(255 - color * height);
 
         }

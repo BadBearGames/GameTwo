@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Should load all sound files from resources and store them in a dictionary on awake.
@@ -10,12 +11,33 @@ using System.Collections;
 public class SoundManager : Singleton<SoundManager>
 {
 	#region Fields
+	private AudioSource sfxSource;
 
+	private AudioClip musicClip;
+	private Dictionary<string, AudioClip> effects = new Dictionary<string, AudioClip>();
 	#endregion
 
-	#region Properties
+	protected SoundManager() {}
 
-	#endregion
+	void Awake()
+	{
+		DontDestroyOnLoad(this);
+	}
 
-	protected SoundManager(){}
+	void Start()
+	{
+		//Just add the audio source
+		sfxSource = gameObject.AddComponent<AudioSource>();
+
+		//init clips
+		effects.Add("coin", Resources.Load("Sfx/coin") as AudioClip);
+		effects.Add("point", Resources.Load("Sfx/point") as AudioClip);
+		effects.Add("jump", Resources.Load("Sfx/jump") as AudioClip);
+		effects.Add("die", Resources.Load("Sfx/die") as AudioClip);
+	}
+
+	public void PlaySfx(string name)
+	{
+		sfxSource.PlayOneShot(effects[name]);
+	}
 }

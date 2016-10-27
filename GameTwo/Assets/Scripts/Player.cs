@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
 	/// <param name="force">Force.</param>
 	public void Jump(Vector3 direction, float force)
 	{
+		SoundManager.Instance.PlaySfx("jump");
 		body.AddForce(direction * force);
 	}
 
@@ -60,7 +61,11 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(20, -.4f, .5f);
 
             //set death bool
-            isDead = true;
+			if (!isDead)
+			{
+				SoundManager.Instance.PlaySfx("die");
+				isDead = true;
+			}
         }
     }
  
