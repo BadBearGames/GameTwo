@@ -55,10 +55,10 @@ public class Platform : MonoBehaviour
     void FixedUpdate()
     {
         //check if its been landed on
-        float rate = 0.2f; //rate of resizing
+        float rate = 0.5f; //rate of resizing
         float color = (255-(height*2.5f)); //Color of the block (scales based on 100 height)
         this.transform.GetComponent<Renderer>().material.color = new Color( color/255.0f ,0, 0); // Set new color
-        if (hasLandedOn)
+        if (hasLandedOn && !isStartingPlatform)
         {
             //shrink platform
             //transform.localScale = new Vector3(transform.localScale.x * rate, transform.localScale.y, transform.localScale.z * rate);

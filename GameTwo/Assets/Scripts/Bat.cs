@@ -5,9 +5,10 @@ public class Bat : MonoBehaviour {
 
     public float speed = 2.0f;
     public float range = 4.0f;
+    private Vector3 worldRange;
 	// Use this for initialization
 	void Start () {
-	
+        worldRange = new Vector3(range,range,range)+transform.position;
 	}
 	
 	// Update is called once per frame
@@ -15,7 +16,7 @@ public class Bat : MonoBehaviour {
         //float rangeX = this.transform.position.x+range;
         this.transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        if (this.transform.position.x >= this.transform.position.x + range || this.transform.position.x <= this.transform.position.x - range || this.transform.position.y >= this.transform.position.y + range || this.transform.position.y <= this.transform.position.y - range || this.transform.position.z >= this.transform.position.z + range || this.transform.position.z <= this.transform.position.z - range)
+        if (this.transform.position.x >= worldRange.x || this.transform.position.x <= -worldRange.x || this.transform.position.y >= worldRange.y || this.transform.position.y <= -worldRange.y || this.transform.position.z >= worldRange.z || this.transform.position.z <= -worldRange.z)
         {
             speed = -speed;
             this.transform.Translate(Vector2.right * speed * Time.deltaTime);
