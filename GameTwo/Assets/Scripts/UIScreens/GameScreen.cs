@@ -10,6 +10,6 @@ public class GameScreen : UIScreen
 
 	void Update()
 	{
-		scoreText.text = GameManager.Instance.Score.ToString();
+		scoreText.text = Mathf.RoundToInt(GameManager.Instance.timer).ToString();
 	}
 }

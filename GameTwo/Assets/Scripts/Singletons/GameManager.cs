@@ -16,6 +16,8 @@ public class GameManager : Singleton<GameManager>
 
 	//Objective
 	public int score;
+	public float timer;
+	bool enableTimer;
 
 	//Spawn Timer
 	private float spawnTimer = 1f; // in seconds
@@ -46,6 +48,8 @@ public class GameManager : Singleton<GameManager>
 	{
         //set score to zero
 		score = 0;
+		timer = 0.00f;
+		enableTimer = true;
 
         //set player to not be dead
         player.IsDead = false;
@@ -96,6 +100,12 @@ public class GameManager : Singleton<GameManager>
 				spawn = false;
 				StartRound();
 			}
+		}
+
+		//increase timer
+		if (enableTimer)
+		{
+			timer += Time.deltaTime;
 		}
     }
 }
