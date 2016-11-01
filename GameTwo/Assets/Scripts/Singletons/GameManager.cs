@@ -69,7 +69,7 @@ public class GameManager : Singleton<GameManager>
     public void NextLevel()
     {
         //move player
-        player.transform.position = new Vector3(20, -.4f, .5f);
+        player.transform.position = new Vector3(20, -1.0f, .5f);
         //save current score
         int save = score;
 
