@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
 	{
 		SoundManager.Instance.PlaySfx("jump");
 		body.AddForce(direction * force);
+        InputManager.Instance.checkSwipe = true;
+
 	}
 
     void OnCollisionEnter(Collision collision)

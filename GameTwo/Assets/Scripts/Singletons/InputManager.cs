@@ -17,6 +17,12 @@ public class InputManager : Singleton<InputManager>
 	public float defaultJump;
 	private Vector3 jumpDirection;
 	public bool canJump;
+
+    public bool checkSwipe = true;
+    private Vector2 startPos;
+    private float startTime;
+
+    public float bufferZone = 50; // Buffer for player to tap instead of swipe. Must exceed number inorder to begin the swipe
 	#endregion
 
 	#region Properties
@@ -50,26 +56,47 @@ public class InputManager : Singleton<InputManager>
 		{
 			CheckJump();
 		}
+        print("TIME: " + Mathf.Abs(Time.time - startTime)+"\nCheckSwipe: "+checkSwipe);
+        if (Mathf.Abs(Time.time - startTime) > 1)
+        {
+            checkSwipe = true;
+        }
 	}
 		
 	private void CheckJump()
 	{
-		if (ChargeInputDown)
-		{
-            
-			if (jumpCharge < jumpChargeMax)
-			{
-				//Later this should be changed to a curve
-				jumpCharge += (jumpCharge * jumpChargeRate) * Time.deltaTime;
-			}
-			else
-			{
-				jumpCharge = jumpChargeMax;
-			}
 
-			//Set the jump direction
-			Vector3 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
-			jumpDirection = Vector3.Normalize(touchPosition - GameManager.Instance.player.Position);
+		if (ChargeInputDown )
+		{
+            if (checkSwipe)
+            {
+                startPos = Input.mousePosition;
+                startTime = Time.time;
+                checkSwipe = false;
+            }
+            
+            if(Vector2.Distance(startPos,Input.mousePosition)<bufferZone){
+                print(Vector2.Distance(startPos, Input.mousePosition));
+			    if (jumpCharge < jumpChargeMax )
+			    {
+				    //Later this should be changed to a curve
+				    jumpCharge += (jumpCharge * jumpChargeRate) * Time.deltaTime;
+			    }
+			    else
+			    {
+				    jumpCharge = jumpChargeMax;
+			    }
+
+			    //Set the jump direction
+			    Vector3 touchPosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+			    jumpDirection = Vector3.Normalize(touchPosition - GameManager.Instance.player.Position);
+                //checkSwipe = false;
+            }
+            else
+            {
+                jumpCharge = 0;
+                Gizmos.DrawLine(startPos, Input.mousePosition);
+            }
 		}
 		else if (Input.GetMouseButtonUp(0))
 		{
