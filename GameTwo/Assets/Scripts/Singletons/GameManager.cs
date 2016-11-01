@@ -79,8 +79,15 @@ public class GameManager : Singleton<GameManager>
         //turn off current level
         levels[level].SetActive(false);
 
-        //get next level
+        //up the current level
         level++;
+
+        if(level == levels.Count) //check if we are at the end of the levels
+        {
+            level = 0; //goto beginign again
+        }
+
+        //set the new current level active
         levels[level].SetActive(true);
 
         //give back score
