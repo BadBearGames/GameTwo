@@ -6,6 +6,7 @@ public class Platform : MonoBehaviour
 	#region Fields
 	private bool hasLandedOn;
 	public bool isStartingPlatform;
+    public bool isEndingPlatform;
     private Vector3 orginal;
     private float height = 100;
 	#endregion
