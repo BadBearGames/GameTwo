@@ -23,7 +23,7 @@ public class InputManager : Singleton<InputManager>
     private float startTime;
     private Vector3 swipeDirection = new Vector3(0,0,0);
     private float swipeForce = 0;
-    public float bufferZone = 25; // Buffer for player to tap instead of swipe. Must exceed number inorder to begin the swipe
+    public float bufferZone = 50; // Buffer for player to tap instead of swipe. Must exceed number inorder to begin the swipe
 	#endregion
 
 	#region Properties

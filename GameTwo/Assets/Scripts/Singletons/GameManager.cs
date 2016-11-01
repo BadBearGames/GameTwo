@@ -22,6 +22,7 @@ public class GameManager : Singleton<GameManager>
 	//Objective
 	public int score;
 	public float timer;
+    public int coins;
 	bool enableTimer;
 
 	//Spawn Timer
@@ -118,7 +119,9 @@ public class GameManager : Singleton<GameManager>
         if (coin.IsCollected)
         {
 			SoundManager.Instance.PlaySfx("coin");
-            score += 9;
+            //score += 9;
+            coins++;
+            print(coins);
         }
     }
 
