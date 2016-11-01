@@ -8,16 +8,13 @@ public class GameScreen : UIScreen
     public Text timer;
     public Text score;
     Coin coin;
-    int ten;
+ 
     #endregion
 
     void Update()
     {
-        ten += 10;
-        timer.text = Mathf.RoundToInt(GameManager.Instance.timer).ToString();
-       
-            score.text = Mathf.RoundToInt(GameManager.Instance.score).ToString();
-        
+        timer.text = Mathf.RoundToInt(GameManager.Instance.timer).ToString(); 
+        score.text = Mathf.RoundToInt(GameManager.Instance.score).ToString();    
     }
 }
 
