@@ -38,6 +38,11 @@ public class Platform : MonoBehaviour
                 hasLandedOn = true;
                 
            }
+           if(isEndingPlatform) //check if we arew at the end
+            {
+                //we are - goto next level
+                GameManager.Instance.NextLevel();
+            }
             	
 		}
 	}

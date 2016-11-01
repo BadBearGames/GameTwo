@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Handles main play cycle logic. Anything within game manager should happen during gameplay
@@ -13,6 +14,10 @@ public class GameManager : Singleton<GameManager>
 
 	//Platform
 	private Platform currentPlatform;
+
+    //levels
+    public int level;
+    public List<GameObject> levels;
 
 	//Objective
 	public int score;
@@ -39,6 +44,7 @@ public class GameManager : Singleton<GameManager>
 	{
 		MenuManager.Instance.GoToScreen("GameScreen");
 		spawn = true;
+        level = 0;
 	}
 
 	/// <summary>
@@ -56,6 +62,30 @@ public class GameManager : Singleton<GameManager>
 
 		InputManager.Instance.ResetJump();
 	}
+
+    /// <summary>
+    /// starts round, and moves us to the next level
+    /// </summary>
+    public void NextLevel()
+    {
+        //move player
+        player.transform.position = new Vector3(20, -.4f, .5f);
+        //save current score
+        int save = score;
+
+        //start a new round
+        StartRound();
+
+        //turn off current level
+        levels[level].SetActive(false);
+
+        //get next level
+        level++;
+        levels[level].SetActive(true);
+
+        //give back score
+        score = save;
+    }
 
 	/// <summary>
 	/// When the player lands on a new platform this should be called
