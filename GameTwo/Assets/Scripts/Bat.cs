@@ -5,10 +5,15 @@ public class Bat : MonoBehaviour {
 
     public float speed = 2.0f;
     public float range = 4.0f;
-    private Vector3 worldRange;
+    private Vector3 worldRangeMax;
+    private Vector3 worldRangeMin;
+
 	// Use this for initialization
 	void Start () {
-        worldRange = new Vector3(range,range,range)+transform.position;
+        worldRangeMax = new Vector3(range,range,range)+this.transform.position;
+        worldRangeMin = this.transform.position - new Vector3(range, range, range);
+        print("Max: "+worldRangeMax);
+        print("Min: "+worldRangeMin);
 	}
 	
 	// Update is called once per frame
@@ -16,7 +21,7 @@ public class Bat : MonoBehaviour {
         //float rangeX = this.transform.position.x+range;
         this.transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        if (this.transform.position.x >= worldRange.x || this.transform.position.x <= -worldRange.x || this.transform.position.y >= worldRange.y || this.transform.position.y <= -worldRange.y || this.transform.position.z >= worldRange.z || this.transform.position.z <= -worldRange.z)
+        if (this.transform.position.x >= worldRangeMax.x || this.transform.position.x <= worldRangeMin.x || this.transform.position.y >= worldRangeMax.y || this.transform.position.y <= worldRangeMin.y || this.transform.position.z >= worldRangeMax.z || this.transform.position.z <= worldRangeMin.z)
         {
             speed = -speed;
             this.transform.Translate(Vector2.right * speed * Time.deltaTime);
