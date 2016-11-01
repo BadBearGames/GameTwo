@@ -81,7 +81,7 @@ public class GameManager : Singleton<GameManager>
         if (coin.IsCollected)
         {
 			SoundManager.Instance.PlaySfx("coin");
-            score += 10;
+            score += 9;
         }
     }
 
